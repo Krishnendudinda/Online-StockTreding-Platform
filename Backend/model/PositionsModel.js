@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const { model } = require("mongoose");
 
-const { PositionsSchema } = require("../schemas/positionsSchema");
+const { PositionsSchema } = require("../schemas/PositionsSchema");
 
 const PositionsModel = mongoose.model("position", PositionsSchema);
 
