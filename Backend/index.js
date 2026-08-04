@@ -33,7 +33,8 @@ const app  =  express();
 
 const allowedOrigins = [
   "http://localhost:3000", // Phase 1: Frontend Landing / Auth Page
-  "http://localhost:3001"  // Phase 2: Stock Trading Dashboard App
+  "http://localhost:3001", // Phase 2: Stock Trading Dashboard App
+  "https://netlify.app"
 ];
 
 app.use(cors({
