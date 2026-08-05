@@ -13,7 +13,8 @@ export default function Loginup() {
       );
 
       if (res.data.success === true) {
-        window.location.href = "http://localhost:3001/"; 
+        //window.location.href = "http://localhost:3001/";
+        window.location.href = "https://zerodha-landing-page-w4r4.onrender.com"; 
       }
     } catch (error) {
       console.error("Login Failed:", error.response?.data?.message || error.message);

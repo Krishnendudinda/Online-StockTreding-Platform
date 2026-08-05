@@ -24,7 +24,8 @@ export default function Signup() {
         withCredentials: true 
       });
       if (response.data.success === true) {
-        window.location.href = "http://localhost:3001/";
+        //window.location.href = "http://localhost:3001/";
+        window.location.href = "https://zerodha-landing-page-w4r4.onrender.com";
       }   
     } catch (err) {
       console.error("Signup failed", err);
