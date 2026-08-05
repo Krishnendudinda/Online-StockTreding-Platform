@@ -6,8 +6,9 @@ export default function Loginup() {
   const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3002/login", 
+    try { 
+      //http://localhost:3002/login
+      const res = await axios.post("https://online-stocktreding-platform-1.onrender.com/login", 
         { username, password }, 
         { withCredentials: true }
       );

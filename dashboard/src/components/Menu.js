@@ -62,7 +62,7 @@ const Menu = () => {
   const handleLogout = (e) =>{
     try{
       //axios.post("http://localhost:3002/logout", {withCredentials:true});
-      axios.post("https://online-stocktreding-platform-1.onrender.com", {withCredentials:true});
+      axios.post("https://online-stocktreding-platform-1.onrender.com/logout", {withCredentials:true});
 
       //window.location.href ="http://localhost:3000";
       window.location.href = "https://zerodha-frontend-jrrm.onrender.com";

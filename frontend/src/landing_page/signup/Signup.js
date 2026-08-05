@@ -16,11 +16,12 @@ export default function Signup() {
       [name]: value 
     });
   };
+//http://localhost:3002/signup
 
   const handleSubmit = async (e) => {
     e.preventDefault(); //stop the reload page
     try {
-      const response = await axios.post("http://localhost:3002/signup", formData, {
+      const response = await axios.post("https://online-stocktreding-platform-1.onrender.com/signup", formData, {
         withCredentials: true 
       });
       if (response.data.success === true) {

@@ -67,17 +67,19 @@ store.on("error", (err) => {
     console.log("Error in Mongo Session Store", err);
 });
 
+app.set("trust proxy", 1);
 const sessionOptions = {
   store: store,
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || "yourdefaultslowsecretkey",
   resave: false,
   saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
   cookie: {
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: false, // Must be false for http (localhost) testing
-    sameSite: "lax", 
+    secure: true, 
+    sameSite: "none", 
   },
 };
 
