@@ -6,7 +6,7 @@ const Summary = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings", { withCredentials: true })
+    axios.get("https://online-stocktreding-platform-1.onrender.com", { withCredentials: true })
       .then((res) => {
         if (res.data.success) {
           setUsername(res.data.username); 
@@ -16,7 +16,7 @@ const Summary = () => {
       .catch((err) => {
         console.error("Session expired or user missing matching cookie:", err);
   
-        window.location.href = "http://localhost:3000/loginup";
+        window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup";
       });
   }, []);
   if (loading) {

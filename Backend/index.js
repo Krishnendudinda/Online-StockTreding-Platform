@@ -38,19 +38,26 @@ const allowedOrigins = [
   "https://zerodha-landing-page-w4r4.onrender.com"
 ];
 
+// Inside your Backend Phase (index.js on Render)
+const cors = require("cors");
+
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like your backend's internal calls or Postman testing)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin) {
+      return callback(null, true);
+    }
+  
+    if (origin.includes("onrender.com") || origin.includes("localhost")) {
       return callback(null, true);
     } else {
-      return callback(new Error('Blocked by CORS policy for Zerodha multi-phase setup'), false);
+      return callback(new Error("CORS Policy Block"), false);
     }
   },
-  credentials: true // CRITICAL: Allows Passport.js session cookies to work on BOTH 3000 and 3001
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 app.use(bodyParser.json());
 

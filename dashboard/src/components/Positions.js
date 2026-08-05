@@ -6,14 +6,14 @@ import axios from "axios";
 const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3002/allPositions", { withCredentials:true })
+    axios.get("https://online-stocktreding-platform-1.onrender.com", { withCredentials:true })
       .then((res) => {
         console.log(res.data);
         setAllPositions(res.data);  
     })
     .catch((err) =>{
         console.log(err);
-        window.location.href = "http://localhost:3000/loginup"; 
+        window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
       });
   }, []);
   
