@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 
+//CandaleStick chart
 function stringToColor(string) {
   let hash = 0;
   if (!string) return '#000000';
@@ -38,17 +39,19 @@ const Menu = () => {
   const [loading, setLoading] = useState(true);
    
   useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings", { withCredentials: true })
+    let isMounted = true;
+    axios.get("https://online-stocktreding-platform-1.onrender.com/allHoldings", { withCredentials: true })
       .then((res) => {
-        if(res.data.success) {
+        if(isMounted && res.data.success) {
           setUsername(res.data.username); 
         }
         setLoading(false);
       })
       .catch((err) => {
         console.error("Session expired or user missing matching cookie:", err);
-        window.location.href = "http://localhost:3000/loginup";
+        window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup";
     });
+    return () => {isMounted = false;}
   }, []);
 
   const handleMenuClick = (index) => {
@@ -70,7 +73,7 @@ const Menu = () => {
     }catch(err){
       console.error("Logout failed:", err);
       //window.location.href = "http://localhost:3000/loginup";
-      window.location.href = "https://zerodha-frontend-jrrm.onrender.com"; 
+      window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
     } 
   }
   const menuClass = "menu";

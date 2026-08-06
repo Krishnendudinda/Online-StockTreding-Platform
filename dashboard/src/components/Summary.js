@@ -6,9 +6,10 @@ const Summary = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     axios.get("https://online-stocktreding-platform-1.onrender.com", { withCredentials: true })
       .then((res) => {
-        if (res.data.success) {
+        if (isMounted && res.data.success) {
           setUsername(res.data.username); 
         }
         setLoading(false);
@@ -18,6 +19,7 @@ const Summary = () => {
   
         window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup";
       });
+      return () => {isMounted = false};
   }, []);
   if (loading) {
     return <div style={{ padding: "20px" }}>Loading your dashboard workspace...</div>;

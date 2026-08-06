@@ -106,15 +106,19 @@ export default function Holdings()  {
   const [allHoldings, setAllHoldings] = useState([]);
 
   useEffect(() => {
-    axios.get("https://online-stocktreding-platform-1.onrender.com", { withCredentials: true })
+    let isMounted = true;
+    axios.get("https://online-stocktreding-platform-1.onrender.com/holdings", { withCredentials: true })
       .then((res) => {
-        console.log(res.data);
-        setAllHoldings(res.data.holdings);  
+        if(isMounted && res.data.success && res.data.holdings){
+          console.log(res.data);
+          setAllHoldings(res.data.holdings);  
+        }
       })
       .catch((err) =>{
         console.log(err);
         window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
       });
+      return () => {isMounted = false};
   }, []);
 
   return (

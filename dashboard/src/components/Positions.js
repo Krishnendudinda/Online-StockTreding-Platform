@@ -6,15 +6,19 @@ import axios from "axios";
 const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
   useEffect(() => {
-    axios.get("https://online-stocktreding-platform-1.onrender.com", { withCredentials:true })
+    let isMounted = true;
+    axios.get("https://online-stocktreding-platform-1.onrender.com/positions", { withCredentials:true })
       .then((res) => {
-        console.log(res.data);
-        setAllPositions(res.data);  
+        if(isMounted && res.data.success && res.data.Positions){
+          console.log(res.data);
+          setAllPositions(res.data.Positions); 
+        }  
     })
     .catch((err) =>{
         console.log(err);
         window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
       });
+      return () => {isMounted = false};
   }, []);
   
   return (
