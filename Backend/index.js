@@ -39,7 +39,7 @@ const allowedOrigins = [
 ];
 
 // Inside your Backend Phase (index.js on Render)
-const cors = require("cors");
+
 
 app.use(cors({
   origin: function (origin, callback) {
