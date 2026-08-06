@@ -163,76 +163,79 @@ export default function VerticalBarGraph({ holdingsData = [] }) {
     </div>
   );
 }*/
-import React, { useMemo } from 'react';
-import Chart from 'react-apexcharts';
-
-const CHART_OPTIONS = {
-  chart: {
-    type: 'candlestick',
-    toolbar: { show: false },
-    animations: { enabled: false }
-  },
-  xaxis: {
-    type: 'category',
-    labels: {
-      style: { colors: '#707070', fontSize: '11px' }
-    }
-  },
-  yaxis: {
-    labels: {
-      style: { colors: '#707070', fontSize: '11px' },
-      formatter: (val) => `₹${val.toFixed(2)}`
-    }
-  },
-  plotOptions: {
-    candlestick: {
-      colors: {
-        upward: '#388e3c',
-        downward: '#d32f2f'
-      }
-    }
-  }
-};
+import React from 'react';
 
 export default function VerticalBarGraph({ holdingsData = [] }) {
-  
-
-  const computedSeries = useMemo(() => {
-    if (!holdingsData || holdingsData.length === 0) return [{ data: [] }];
-
-    const dataPoints = holdingsData.map((stock) => {
-      const closePrice = stock.price || 0;
-      const openPrice = stock.avg || closePrice;
-      const highPrice = Math.max(openPrice, closePrice) * 1.02;
-      const lowPrice = Math.min(openPrice, closePrice) * 0.98;
-
-      return {
-        x: stock.name || "Stock",
-        y: [
-          parseFloat(openPrice.toFixed(2)),
-          parseFloat(highPrice.toFixed(2)),
-          parseFloat(lowPrice.toFixed(2)),
-          parseFloat(closePrice.toFixed(2))
-        ]
-      };
-    });
-
-    return [{ data: dataPoints }];
-  }, [holdingsData]);
-
-  // Return a safe placeholder canvas if no stock items exist
   if (!holdingsData || holdingsData.length === 0) {
     return <div style={{ padding: '20px', color: '#707070' }}>No holdings dataset found to map...</div>;
   }
 
   return (
-    <div style={{ width: '100%', maxWidth: '900px', margin: '20px auto', padding: '16px', backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-      <h4 style={{ margin: '0 0 12px 0', color: '#4a4a4a', fontSize: '14px', fontWeight: 600 }}>
-        Holdings Distribution
+    <div style={{ 
+      width: '100%', 
+      maxWidth: '900px', 
+      margin: '20px auto', 
+      padding: '24px', 
+      backgroundColor: '#fff', 
+      borderRadius: '8px', 
+      boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+      fontFamily: 'sans-serif'
+    }}>
+      <h4 style={{ margin: '0 0 20px 0', color: '#4a4a4a', fontSize: '15px', fontWeight: 600 }}>
+        Holdings Distribution (LTP Comparison)
       </h4>
-     
-      <Chart options={CHART_OPTIONS} series={computedSeries} type="candlestick" height={400} />
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {holdingsData.map((stock, index) => {
+          const closePrice = stock.price || 0;
+          const openPrice = stock.avg || closePrice;
+          const isUpward = closePrice >= openPrice;
+          
+          // Calculate relative scaling based on the highest stock price in your portfolio
+          const maxPriceInDataset = Math.max(...holdingsData.map(s => s.price || 1));
+          const barWidthPercentage = Math.max(15, Math.min(100, (closePrice / maxPriceInDataset) * 100));
+
+          return (
+            <div key={index} style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+              /* Stock Name Wrapper */
+              <div style={{ width: '80px', minWidth: '80px', fontWeight: 600, color: '#333', fontSize: '13px' }}>
+                {stock.name || "Stock"}
+              </div>
+
+              /* Bar Graph Wrapper */
+              <div style={{ flexGrow: 1, backgroundColor: '#f5f5f5', borderRadius: '4px', height: '24px', overflow: 'hidden', marginRight: '12px' }}>
+                <div style={{
+                  width: `${barWidthPercentage}%`,
+                  backgroundColor: isUpward ? '#388e3c' : '#d32f2f',
+                  height: '100%',
+                  borderRadius: '4px',
+                  transition: 'width 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end',
+                  paddingRight: '8px'
+                }}>
+                  {barWidthPercentage > 25 && (
+                    <span style={{ color: '#fff', fontSize: '11px', fontWeight: 'bold' }}>
+                      ₹{closePrice.toFixed(1)}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              /* Price Metrics Wrapper */
+              <div style={{ minWidth: '110px', textAlign: 'right', fontSize: '13px' }}>
+                <span style={{ color: isUpward ? '#388e3c' : '#d32f2f', fontWeight: 600 }}>
+                  ₹{closePrice.toFixed(2)}
+                </span>
+                <small style={{ display: 'block', color: '#888', fontSize: '10px' }}>
+                  Avg: ₹{openPrice.toFixed(2)}
+                </small>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
-
