@@ -7,7 +7,7 @@ const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
   useEffect(() => {
     let isMounted = true;
-    axios.get("https://online-stocktreding-platform-1.onrender.com/positions", { withCredentials:true })
+    axios.get("https://online-stocktreding-platform-1.onrender.com/allPositions", { withCredentials:true })
       .then((res) => {
         if(isMounted && res.data.success && res.data.Positions){
           console.log(res.data);

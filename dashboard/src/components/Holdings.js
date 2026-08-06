@@ -107,7 +107,7 @@ export default function Holdings()  {
 
   useEffect(() => {
     let isMounted = true;
-    axios.get("https://online-stocktreding-platform-1.onrender.com/holdings", { withCredentials: true })
+    axios.get("https://online-stocktreding-platform-1.onrender.com/allHoldings", { withCredentials: true })
       .then((res) => {
         if(isMounted && res.data.success && res.data.holdings){
           console.log(res.data);
