@@ -6,8 +6,8 @@ const userControl = require("./useController.js");
 router.post("/signup", userControl.signup);
 
 router.post(
-  "/login", 
-  passport.authenticate("local", { failWithError: true }), 
+  "/login",
+  passport.authenticate("local", { failWithError: true }),
   userControl.login
 );
 
