@@ -35,10 +35,9 @@ const allowedOrigins = [
   //"http://localhost:3000", // Phase 1: Frontend Landing / Auth Page
   //"http://localhost:3001" // Phase 2: Stock Trading Dashboard App
   "https://zerodha-frontend-jrrm.onrender.com",
-  "https://zerodha-landing-page-w4r4.onrender.com"
+  "https://dashboard-landing-page-45j2.onrender.com"
 ];
 
-// Inside your Backend Phase (index.js on Render)
 
 
 app.use(cors({

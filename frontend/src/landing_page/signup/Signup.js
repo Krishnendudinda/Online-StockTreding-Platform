@@ -26,7 +26,7 @@ export default function Signup() {
       });
       if (response.data.success === true) {
         //window.location.href = "http://localhost:3001/";
-        window.location.href = "https://zerodha-landing-page-w4r4.onrender.com";
+        window.location.href = "https://dashboard-landing-page-45j2.onrender.com";
       }   
     } catch (err) {
       console.error("Signup failed", err);
