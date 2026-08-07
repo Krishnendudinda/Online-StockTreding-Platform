@@ -69,13 +69,11 @@ const Menu = () => {
       axios.post("https://online-stocktreding-platform-1.onrender.com/logout", {withCredentials:true});
 
       //window.location.href ="http://localhost:3000";
-      localStorage.clear();
       window.location.href = "https://zerodha-frontend-jrrm.onrender.com";
           
     }catch(err){
       console.error("Logout failed:", err);
       //window.location.href = "http://localhost:3000/loginup";
-      localStorage.clear();
       window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
     } 
   }
