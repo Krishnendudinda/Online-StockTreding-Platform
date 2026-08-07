@@ -26,6 +26,9 @@ export default function Signup() {
       });
       if (response.data.success === true) {
         //window.location.href = "http://localhost:3001/";
+        localStorage.setItem("userId", response.data.user.id);
+        localStorage.setItem("username", response.data.user.username);
+
         window.location.href = "https://dashboard-landing-page-45j2.onrender.com";
       }   
     } catch (err) {

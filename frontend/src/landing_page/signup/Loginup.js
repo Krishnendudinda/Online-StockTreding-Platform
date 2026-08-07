@@ -15,6 +15,9 @@ export default function Loginup() {
 
       if (res.data.success === true) {
         //window.location.href = "http://localhost:3001/";
+        localStorage.setItem("userId", res.data.user.id);
+        localStorage.setItem("username", res.data.user.username);
+
         window.location.href = "https://dashboard-landing-page-45j2.onrender.com"; 
       }
     } catch (error) {
