@@ -75,13 +75,12 @@ store.on("error", (err) => {
 
 app.set("trust proxy", 1);
 const sessionOptions = {
-  store: store,
   secret: process.env.SECRET || "yourdefaultslowsecretkey",
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
   cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     secure: true, 
