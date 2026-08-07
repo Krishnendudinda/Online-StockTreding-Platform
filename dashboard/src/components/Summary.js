@@ -7,17 +7,35 @@ const Summary = () => {
 
   useEffect(() => {
     let isMounted = true;
+
+    const cachedName = localStorage.getItem("username");
+    const activeUserId = localStorage.getItem("userId");
+
+    if (cachedName) {
+      setUsername(cachedName);
+    }
+
+    if (!activeUserId) {
+      window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup";
+      return;
+    }
+
     axios.get("https://online-stocktreding-platform-1.onrender.com", { withCredentials: true })
       .then((res) => {
         if (isMounted && res.data.success) {
           setUsername(res.data.username); 
         }
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       })
       .catch((err) => {
         console.error("Session expired or user missing matching cookie:", err);
   
-        window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup";
+        //window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup";
+        if (isMounted) { 
+          setLoading(false);
+        }
       });
       return () => {isMounted = false};
   }, []);

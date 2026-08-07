@@ -7,16 +7,25 @@ const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
   useEffect(() => {
     let isMounted = true;
+
+    const activeUserId = localStorage.getItem("userId");
+    if (!activeUserId) {
+      window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
+      return;
+    }
+
     axios.get("https://online-stocktreding-platform-1.onrender.com/allPositions", { withCredentials:true })
       .then((res) => {
         if(isMounted && res.data.success && res.data.Positions){
           console.log(res.data);
           setAllPositions(res.data.Positions); 
-        }  
+        }
+        if(isMounted){setLoading(false);}  
     })
     .catch((err) =>{
         console.log(err);
-        window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
+        //window.location.href = "https://zerodha-frontend-jrrm.onrender.com/loginup"; 
+        if(isMounted){setLoading(false);}  
       });
       return () => {isMounted = false};
   }, []);
