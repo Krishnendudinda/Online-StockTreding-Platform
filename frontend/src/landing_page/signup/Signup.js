@@ -29,7 +29,7 @@ export default function Signup() {
         window.location.href = "https://dashboard-landing-page-45j2.onrender.com";
       }   
     } catch (err) {
-      console.error("Signup failed", err);
+      console.log("Signup failed", err);
     }
   };
 
