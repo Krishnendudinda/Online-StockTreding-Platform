@@ -69,18 +69,18 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", (err) => {
+store.on("error",(err) => {
   console.log("Error in Mongo Session Store", err);
 });
 
 // store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
 const sessionOptions = {
-  secret: process.env.SECRET || "yourdefaultslowsecretkey",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
   store: store,
   cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    expires:  new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     secure: true, 
