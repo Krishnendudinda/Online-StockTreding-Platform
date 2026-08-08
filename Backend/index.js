@@ -38,7 +38,7 @@ const allowedOrigins = [
   "https://dashboard-landing-page-45j2.onrender.com"
 ];
 
-
+app.set("trust proxy", 1);
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -70,17 +70,17 @@ const store = MongoStore.create({
 });
 
 store.on("error", (err) => {
-    console.log("Error in Mongo Session Store", err);
+  console.log("Error in Mongo Session Store", err);
 });
 
-app.set("trust proxy", 1);
+// store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
 const sessionOptions = {
   secret: process.env.SECRET || "yourdefaultslowsecretkey",
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+  store: store,
   cookie: {
-    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     secure: true, 
