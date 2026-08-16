@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.nav-item{
+  margin-right: 20px;
+}
+.navAll ul li .nav-link:hover{
+  color: rgba(9, 81, 237, 0.993);
+}
+.footer a {
+  text-decoration: none;
+  color: black;
+  opacity: 0.6;
+}
+.foot a{
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+  opacity: 0.6;
+  margin-right:1.5rem;
+}
+.container i {
+  margin-right: 1rem;
+}
+#support-Hero {
+  background-color: rgba(56,126,209);
+  color: white;
+}
+#support-Hero a {
+  color: white;
+}
+#support-Wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+}
+
+#support-Hero input {
+  padding: 20px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 10px;
+  border:none;
+}
+#support a {
+  margin-right: 9px;
+}
+.supp {
+  display: flex;
+  justify-content: space-evenly;
+  margin:0 150px;
+}
+
+
+
+
+
+
+
+
+/* Background */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.login-card {
+  width: 500px;
+  padding: 35px;
+  background: linear-gradient(-250deg, #240e0e, #830909);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  text-align: center;
+}
+
+/* Logo 
+.card-logo {
+  font-size: 35px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+.card-logo i {
+    color: #ff385c;
+}
+*/
+.login-title {
+  font-size: 14px;
+  opacity: 1;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+
+  margin-top: 10px;
+  border: none;
+  border-radius: 30px;
+
+  background: linear-gradient(135deg, #ff385c, #ff1e3c);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  transform: scale(1.03);
+}
+
+.login-social button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Footer */
+.login-footer {
+  margin-top: 15px;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #ff385c;
+  text-decoration: none;
+}
+
+.icon i:hover{
+  color:blue;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin{
+  from {
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
