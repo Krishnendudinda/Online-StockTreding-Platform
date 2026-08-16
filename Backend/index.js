@@ -306,7 +306,6 @@ app.post('/newOrder', async(req, res) =>{
   });
 
   await newOrder.save();
-  //res.json(newOrder);
   res.send("order saved");
 });
 
