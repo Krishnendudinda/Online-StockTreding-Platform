@@ -26,11 +26,6 @@ const url = process.env.MONGO_URL;
 
 const app  =  express();
 
-//app.use(cors({
-//  origin: "http://localhost:3000", // Your React/Frontend port
-//  credentials: true,
-//}));
-
 const allowedOrigins = [
   //"http://localhost:3000", // Phase 1: Frontend Landing / Auth Page
   //"http://localhost:3001" // Phase 2: Stock Trading Dashboard App
