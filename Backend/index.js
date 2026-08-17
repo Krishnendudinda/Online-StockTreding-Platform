@@ -73,7 +73,6 @@ store.on("error",(err) => {
   console.log("Error in Mongo Session Store", err);
 });
 
-// store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
 const sessionOptions = {
   secret: process.env.SECRET,
   resave: false,
