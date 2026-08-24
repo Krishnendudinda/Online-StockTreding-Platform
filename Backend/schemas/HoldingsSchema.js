@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { Schema } = require("mongoose");
+//const { Schema } = require("mongoose");
 
 module.exports.HoldingsSchema = new mongoose.Schema({
     name: String,
