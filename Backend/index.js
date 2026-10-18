@@ -18,6 +18,7 @@ const userRout = require("./userRouter.js");
 const { HoldingsModel } = require('./model/HoldingsModel.js');
 const { PositionsModel } = require('./model/PositionsModel.js');
 const { OrdersModel } = require('./model/OrdersModel.js');
+const { SellingsModel } = require('./model/SellingsModel.js');
 
 const mongoose = require('mongoose');
 
@@ -309,7 +310,7 @@ app.get('/showOrders', async (req, res) => {
 });
 
 app.post('/newSells', async(req, res) => {
-  let newSells = new SellsModel({
+  let newSells = new SellingsModel({
     name: req.body.name,
     price: req.body.price,
     qty: req.body.qty,
@@ -320,7 +321,7 @@ app.post('/newSells', async(req, res) => {
 });
 
 app.get('/showSells', async (req, res) => {
-  let showSells = await SellsModel.find({});
+  let showSells = await SellingsModel.find({});
   res.json(showSells);
 });
 
