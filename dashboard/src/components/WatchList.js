@@ -103,6 +103,9 @@ const WatchListActions = ({ uid }) => {
   const handleBuyButton = () => {
    generalContext.openBuyWindow(uid);
   };
+  const handleSellButton = () => {
+    generalContext.openSellWindow(uid);
+  };
   
   return (
     <span className="actions">
@@ -121,6 +124,7 @@ const WatchListActions = ({ uid }) => {
           placement="top"
           arrow
           TransitionComponent={Grow}
+          onClick={handleSellButton}
         >
           <button className="sell">Sell</button>
         </Tooltip>

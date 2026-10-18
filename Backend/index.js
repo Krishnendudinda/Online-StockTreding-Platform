@@ -308,6 +308,22 @@ app.get('/showOrders', async (req, res) => {
   res.json(showOrders);
 });
 
+app.post('/newSells', async(req, res) => {
+  let newSells = new SellsModel({
+    name: req.body.name,
+    price: req.body.price,
+    qty: req.body.qty,
+    mode: req.body.mode,
+  });
+  await newSells.save();
+  res.send("sell order saved");
+});
+
+app.get('/showSells', async (req, res) => {
+  let showSells = await SellsModel.find({});
+  res.json(showSells);
+});
+
 app.get("/user", (req, res) => {
   if (req.isAuthenticated() && req.user) {
     return res.json({
